@@ -1,0 +1,98 @@
+version: '3.7'
+services:
+
+  web:
+    image: ansible/awx_web:9.1.0
+    depends_on:
+      - rabbitmq
+      - memcached
+      - postgres
+    ports:
+      - "8080:8052"
+    hostname: awxweb
+    user: root
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - "./config/SECRET_KEY.txt:/etc/tower/SECRET_KEY"
+      - "./config/environment.sh:/etc/tower/conf.d/environment.sh"
+      - "./config/credentials.py:/etc/tower/conf.d/credentials.py"
+      - "./config/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./projects:/var/lib/awx/projects:rw"
+      # - "/etc/pki/ca-trust/source/anchors:/etc/pki/ca-trust/source/anchors:ro' }}"
+      # - "ssl_certificate:/etc/nginx/awxweb.pem:ro"
+    environment:
+      http_proxy: ''
+      https_proxy: ''
+      no_proxy: ''
+
+  task:
+    image: ansible/awx_task:9.1.0
+    depends_on:
+      - rabbitmq
+      - memcached
+      - web
+      - postgres
+    hostname: awx
+    user: root
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - "./config/SECRET_KEY.txt:/etc/tower/SECRET_KEY"
+      - "./config/environment.sh:/etc/tower/conf.d/environment.sh"
+      - "./config/credentials.py:/etc/tower/conf.d/credentials.py"
+      - "./projects:/var/lib/awx/projects:rw"
+      # - "/etc/pki/ca-trust/source/anchors:/etc/pki/ca-trust/source/anchors:ro"
+      # - "ssl_certificate:/etc/nginx/awxweb.pem:ro"
+    environment:
+      http_proxy: ''
+      https_proxy: ''
+      no_proxy: ''
+
+  rabbitmq:
+    image: ansible/awx_rabbitmq
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      RABBITMQ_DEFAULT_VHOST: "awx"
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "changeme"
+      RABBITMQ_ERLANG_COOKIE: "cookiemonster"
+      http_proxy: ''
+      https_proxy: ''
+      no_proxy: ''
+
+  memcached:
+    image: "memcached"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      http_proxy: ''
+      https_proxy: ''
+      no_proxy: ''
+
+  postgres:
+    image: postgres
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - ./postgres/data/:/var/lib/postgresql/data/pgdata:Z
+    environment:
+      POSTGRES_USER: awx
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: awx
+      PGDATA: /var/lib/postgresql/data/pgdata
+      http_proxy: ''
+      https_proxy: ''
+      no_proxy: ''
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+    - 9090:8080
