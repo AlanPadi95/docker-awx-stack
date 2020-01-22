@@ -20,6 +20,7 @@ services:
       - "./config/credentials.py:/etc/tower/conf.d/credentials.py"
       - "./config/nginx.conf:/etc/nginx/nginx.conf:ro"
       - "./projects:/var/lib/awx/projects:rw"
+      - "./inventories:/var/lib/awx/inventories:rw"
       # - "/etc/pki/ca-trust/source/anchors:/etc/pki/ca-trust/source/anchors:ro' }}"
       # - "ssl_certificate:/etc/nginx/awxweb.pem:ro"
     environment:
