@@ -3,3 +3,4 @@
 postgres/**
 projects/**
 inventories/**
+.DS_Store
