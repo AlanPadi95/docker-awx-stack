@@ -51,14 +51,9 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
-    depends_on:
-      - postgres
 
   rabbitmq:
     image: ansible/awx_rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
     deploy:
       mode: replicated
       replicas: 1
@@ -83,8 +78,6 @@ services:
 
   postgres:
     image: postgres
-    ports:
-      - "5432:5432"
     deploy:
       mode: replicated
       replicas: 1
@@ -98,33 +91,3 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
-  
-  metricbeat:
-    image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION:-7.5.2}
-    user: root
-    environment:
-      - setup.kibana.host=${KIBANA_HOST:-kibana}:5601
-      - output.elasticsearch.hosts=${ELASTIC_HOST}:9200
-      - ELASTICSEARCH_USERNAME=${ELASTICSEARCH_USERNAME-elastic}
-      - ELASTICSEARCH_PASSWORD=${ELASTICSEARCH_PASSWORD-changeme}
-      - AWX_DB_USER=${AWX_DB_USER:-awx}
-      - AWX_DB_PASS=${AWX_DB_PASS:-changeme}
-      - AWX_RABBITMQ_USER=${AWX_RABBITMQ_USER:-guest}
-      - AWX_RABBITMQ_PASS=${AWX_RABBITMQ_PASS:-changeme}
-    configs:
-      - source: metricbeat_config
-        target: /usr/share/metricbeat/metricbeat.yml
-    command: -system.hostfs=/hostfs
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
-      - /proc:/hostfs/proc:ro
-      - /:/hostfs:ro
-      - ./metricbeat/dashboards:/usr/share/metricbeat/kibana/7/dashboard:ro
-    deploy:
-      mode: replicated
-      replicas: 1
-
-configs:
-  metricbeat_config:
-    file: ./metricbeat/config/metricbeat.yml
