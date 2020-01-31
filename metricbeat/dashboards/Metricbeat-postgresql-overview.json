@@ -1,0 +1,284 @@
+{
+    "objects": [
+        {
+            "attributes": {
+                "description": "This PostgreSQL dashboard shows the most important database related metrics.\n\n", 
+                "hits": 0, 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "optionsJSON": "{\"useMargins\": true, \"hidePanelTitles\": false}", 
+                "panelsJSON": "[{\"gridData\": {\"i\": \"1\", \"h\": 12, \"y\": 6, \"w\": 24, \"x\": 0}, \"title\": \"Query Latency\", \"embeddableConfig\": {}, \"version\": \"7.3.0\", \"panelRefName\": \"panel_0\", \"panelIndex\": \"1\"}, {\"gridData\": {\"i\": \"2\", \"h\": 12, \"y\": 0, \"w\": 24, \"x\": 24}, \"title\": \"Database Transactions\", \"embeddableConfig\": {}, \"version\": \"7.3.0\", \"panelRefName\": \"panel_1\", \"panelIndex\": \"2\"}, {\"gridData\": {\"i\": \"3\", \"h\": 10, \"y\": 18, \"w\": 24, \"x\": 0}, \"title\": \"Fileblock IO\", \"embeddableConfig\": {}, \"version\": \"7.3.0\", \"panelRefName\": \"panel_2\", \"panelIndex\": \"3\"}, {\"gridData\": {\"i\": \"4\", \"h\": 6, \"y\": 0, \"w\": 14, \"x\": 10}, \"title\": \"Rows Fetched/Returned\", \"embeddableConfig\": {}, \"version\": \"7.3.0\", \"panelRefName\": \"panel_3\", \"panelIndex\": \"4\"}, {\"gridData\": {\"i\": \"5\", \"h\": 9, \"y\": 22, \"w\": 24, \"x\": 24}, \"title\": \"Rows Inserted/Deleted/Updated\", \"embeddableConfig\": {}, \"version\": \"7.3.0\", \"panelRefName\": \"panel_4\", \"panelIndex\": \"5\"}, {\"gridData\": {\"i\": \"6\", \"h\": 11, \"y\": 28, \"w\": 24, \"x\": 0}, \"title\": \"Conflict/Deadlock Rates\", \"embeddableConfig\": {}, \"version\": \"7.3.0\", \"panelRefName\": \"panel_5\", \"panelIndex\": \"6\"}, {\"gridData\": {\"i\": \"7\", \"h\": 6, \"y\": 0, \"w\": 10, \"x\": 0}, \"title\": \"Database Filter\", \"embeddableConfig\": {}, \"version\": \"7.3.0\", \"panelRefName\": \"panel_6\", \"panelIndex\": \"7\"}, {\"gridData\": {\"i\": \"8\", \"h\": 10, \"y\": 12, \"w\": 24, \"x\": 24}, \"title\": \"Query Calls Count\", \"embeddableConfig\": {}, \"version\": \"7.3.0\", \"panelRefName\": \"panel_7\", \"panelIndex\": \"8\"}, {\"gridData\": {\"i\": \"9\", \"h\": 8, \"y\": 31, \"w\": 12, \"x\": 24}, \"title\": \"Local block cache stats\", \"embeddableConfig\": {}, \"version\": \"7.3.0\", \"panelRefName\": \"panel_8\", \"panelIndex\": \"9\"}, {\"gridData\": {\"i\": \"10\", \"h\": 8, \"y\": 31, \"w\": 12, \"x\": 36}, \"title\": \"Shared block cache stats\", \"embeddableConfig\": {}, \"version\": \"7.3.0\", \"panelRefName\": \"panel_9\", \"panelIndex\": \"10\"}]", 
+                "timeRestore": false, 
+                "title": "[Metricbeat PostgreSQL] Database Overview", 
+                "version": 1
+            }, 
+            "id": "4288b790-b79f-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "dashboard": "7.3.0"
+            }, 
+            "references": [
+                {
+                    "id": "fbfa67e0-b796-11e9-a579-f5c0a5d81340", 
+                    "name": "panel_0", 
+                    "type": "visualization"
+                }, 
+                {
+                    "id": "d733c630-b797-11e9-a579-f5c0a5d81340", 
+                    "name": "panel_1", 
+                    "type": "visualization"
+                }, 
+                {
+                    "id": "570973a0-b798-11e9-a579-f5c0a5d81340", 
+                    "name": "panel_2", 
+                    "type": "visualization"
+                }, 
+                {
+                    "id": "66d67200-b799-11e9-a579-f5c0a5d81340", 
+                    "name": "panel_3", 
+                    "type": "visualization"
+                }, 
+                {
+                    "id": "20931ef0-b79a-11e9-a579-f5c0a5d81340", 
+                    "name": "panel_4", 
+                    "type": "visualization"
+                }, 
+                {
+                    "id": "960ecdf0-b79a-11e9-a579-f5c0a5d81340", 
+                    "name": "panel_5", 
+                    "type": "visualization"
+                }, 
+                {
+                    "id": "98e6b0a0-b79b-11e9-a579-f5c0a5d81340", 
+                    "name": "panel_6", 
+                    "type": "visualization"
+                }, 
+                {
+                    "id": "147875b0-b903-11e9-a579-f5c0a5d81340", 
+                    "name": "panel_7", 
+                    "type": "visualization"
+                }, 
+                {
+                    "id": "0cb65170-b909-11e9-a579-f5c0a5d81340", 
+                    "name": "panel_8", 
+                    "type": "visualization"
+                }, 
+                {
+                    "id": "e2b28ce0-b908-11e9-a579-f5c0a5d81340", 
+                    "name": "panel_9", 
+                    "type": "visualization"
+                }
+            ], 
+            "type": "dashboard", 
+            "updated_at": "2019-08-19T14:53:17.203Z", 
+            "version": "WzE1NjQsMV0="
+        }, 
+        {
+            "attributes": {
+                "description": "", 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "title": "Query Latency [Metricbeat PostgreSQL] ECS", 
+                "uiStateJSON": "{}", 
+                "version": 1, 
+                "visState": "{\"type\": \"metrics\", \"params\": {\"default_index_pattern\": \"metricbeat-*\", \"index_pattern\": \"metricbeat-*\", \"default_timefield\": \"@timestamp\", \"series\": [{\"line_width\": 2, \"terms_field\": \"postgresql.statement.query.text\", \"point_size\": 0, \"terms_size\": \"10\", \"color\": \"rgba(0,156,224,1)\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"Query Latency\", \"metrics\": [{\"field\": \"postgresql.statement.query.time.total.ms\", \"type\": \"max\", \"id\": \"919c7c80-b796-11e9-8ed3-ef1959e6b366\"}, {\"field\": \"919c7c80-b796-11e9-8ed3-ef1959e6b366\", \"type\": \"derivative\", \"id\": \"9e553c60-b79f-11e9-9029-a9d302b79ec2\", \"unit\": \"1s\"}, {\"field\": \"9e553c60-b79f-11e9-9029-a9d302b79ec2\", \"type\": \"positive_only\", \"id\": \"a58b6590-b79f-11e9-9029-a9d302b79ec2\", \"unit\": \"\"}], \"split_mode\": \"terms\", \"chart_type\": \"line\", \"terms_order_by\": \"919c7c80-b796-11e9-8ed3-ef1959e6b366\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"919c5571-b796-11e9-8ed3-ef1959e6b366\", \"fill\": 0}], \"axis_formatter\": \"number\", \"interval\": \"auto\", \"id\": \"919c5570-b796-11e9-8ed3-ef1959e6b366\", \"filter\": {\"query\": \"\", \"language\": \"kuery\"}, \"time_field\": \"@timestamp\", \"show_legend\": 1, \"show_grid\": 1, \"axis_scale\": \"normal\", \"type\": \"timeseries\", \"axis_position\": \"left\"}, \"aggs\": [], \"title\": \"Query Latency [Metricbeat PostgreSQL] ECS\"}"
+            }, 
+            "id": "fbfa67e0-b796-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "visualization": "7.3.0"
+            }, 
+            "references": [], 
+            "type": "visualization", 
+            "updated_at": "2019-08-09T11:40:30.561Z", 
+            "version": "WzExNjcsMV0="
+        }, 
+        {
+            "attributes": {
+                "description": "", 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "title": "Database Transactions [Metricbeat PostgreSQL] ECS", 
+                "uiStateJSON": "{}", 
+                "version": 1, 
+                "visState": "{\"type\": \"metrics\", \"params\": {\"default_index_pattern\": \"metricbeat-*\", \"index_pattern\": \"metricbeat-*\", \"default_timefield\": \"@timestamp\", \"series\": [{\"line_width\": 2, \"point_size\": 0, \"color\": \"rgba(104,188,0,1)\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"committed\", \"metrics\": [{\"field\": \"postgresql.database.transactions.commit\", \"type\": \"max\", \"id\": \"7af01592-b797-11e9-8816-2992f1df7a62\"}, {\"field\": \"7af01592-b797-11e9-8816-2992f1df7a62\", \"type\": \"derivative\", \"id\": \"7af01594-b797-11e9-8816-2992f1df7a62\", \"unit\": \"1s\"}, {\"field\": \"7af01594-b797-11e9-8816-2992f1df7a62\", \"type\": \"positive_only\", \"id\": \"7af01593-b797-11e9-8816-2992f1df7a62\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"7af01591-b797-11e9-8816-2992f1df7a62\", \"fill\": 0}, {\"line_width\": 2, \"point_size\": 0, \"color\": \"rgba(254,146,0,1)\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"rolled back\", \"metrics\": [{\"field\": \"postgresql.database.transactions.rollback\", \"type\": \"max\", \"id\": \"7af01596-b797-11e9-8816-2992f1df7a62\"}, {\"field\": \"7af01596-b797-11e9-8816-2992f1df7a62\", \"type\": \"derivative\", \"id\": \"7af01598-b797-11e9-8816-2992f1df7a62\", \"unit\": \"1s\"}, {\"field\": \"7af01598-b797-11e9-8816-2992f1df7a62\", \"type\": \"positive_only\", \"id\": \"7af01597-b797-11e9-8816-2992f1df7a62\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"7af01595-b797-11e9-8816-2992f1df7a62\", \"fill\": 0}], \"axis_formatter\": \"number\", \"interval\": \"auto\", \"id\": \"7af01590-b797-11e9-8816-2992f1df7a62\", \"filter\": {\"query\": \"\", \"language\": \"kuery\"}, \"time_field\": \"@timestamp\", \"show_legend\": 1, \"show_grid\": 1, \"axis_scale\": \"normal\", \"type\": \"timeseries\", \"axis_position\": \"left\"}, \"aggs\": [], \"title\": \"Database Transactions [Metricbeat PostgreSQL] ECS\"}"
+            }, 
+            "id": "d733c630-b797-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "visualization": "7.3.0"
+            }, 
+            "references": [], 
+            "type": "visualization", 
+            "updated_at": "2019-08-09T11:40:44.158Z", 
+            "version": "WzExNzMsMV0="
+        }, 
+        {
+            "attributes": {
+                "description": "", 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "title": "Fileblock IO [Metricbeat PostgreSQL] ECS", 
+                "uiStateJSON": "{}", 
+                "version": 1, 
+                "visState": "{\"type\": \"metrics\", \"params\": {\"default_index_pattern\": \"metricbeat-*\", \"index_pattern\": \"metricbeat-*\", \"default_timefield\": \"@timestamp\", \"series\": [{\"line_width\": 2, \"point_size\": 0, \"color\": \"rgba(252,196,0,1)\", \"stacked\": \"none\", \"value_template\": \"{{value}} ms\", \"label\": \"read\", \"metrics\": [{\"field\": \"postgresql.database.blocks.time.read.ms\", \"type\": \"max\", \"id\": \"fbc27282-b797-11e9-b46b-4f80f005c4a5\"}, {\"field\": \"fbc27282-b797-11e9-b46b-4f80f005c4a5\", \"type\": \"derivative\", \"id\": \"fbc27284-b797-11e9-b46b-4f80f005c4a5\", \"unit\": \"1s\"}, {\"field\": \"fbc27284-b797-11e9-b46b-4f80f005c4a5\", \"type\": \"positive_only\", \"id\": \"fbc27283-b797-11e9-b46b-4f80f005c4a5\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"fbc27281-b797-11e9-b46b-4f80f005c4a5\", \"fill\": 0}, {\"line_width\": 2, \"point_size\": 0, \"color\": \"rgba(123,100,255,1)\", \"stacked\": \"none\", \"value_template\": \"{{value}} ms\", \"label\": \"write\", \"metrics\": [{\"field\": \"postgresql.database.blocks.time.write.ms\", \"type\": \"max\", \"id\": \"fbc27286-b797-11e9-b46b-4f80f005c4a5\"}, {\"field\": \"fbc27286-b797-11e9-b46b-4f80f005c4a5\", \"type\": \"derivative\", \"id\": \"fbc27288-b797-11e9-b46b-4f80f005c4a5\", \"unit\": \"1s\"}, {\"field\": \"fbc27288-b797-11e9-b46b-4f80f005c4a5\", \"type\": \"positive_only\", \"id\": \"fbc27287-b797-11e9-b46b-4f80f005c4a5\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"fbc27285-b797-11e9-b46b-4f80f005c4a5\", \"fill\": 0}], \"axis_formatter\": \"number\", \"interval\": \"auto\", \"id\": \"fbc27280-b797-11e9-b46b-4f80f005c4a5\", \"filter\": {\"query\": \"\", \"language\": \"kuery\"}, \"time_field\": \"@timestamp\", \"show_legend\": 1, \"show_grid\": 1, \"axis_scale\": \"normal\", \"type\": \"timeseries\", \"axis_position\": \"left\"}, \"aggs\": [], \"title\": \"Fileblock IO [Metricbeat PostgreSQL] ECS\"}"
+            }, 
+            "id": "570973a0-b798-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "visualization": "7.3.0"
+            }, 
+            "references": [], 
+            "type": "visualization", 
+            "updated_at": "2019-08-09T11:41:16.761Z", 
+            "version": "WzExODgsMV0="
+        }, 
+        {
+            "attributes": {
+                "description": "", 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "title": "Rows Fetched/Returned [Metricbeat PostgreSQL] ECS", 
+                "uiStateJSON": "{}", 
+                "version": 1, 
+                "visState": "{\"type\": \"metrics\", \"params\": {\"bar_color_rules\": [{\"id\": \"cc80b5d0-b798-11e9-af2f-3be5a91b64a6\"}], \"default_index_pattern\": \"metricbeat-*\", \"background_color_rules\": [{\"id\": \"bec42b70-b798-11e9-af2f-3be5a91b64a6\"}], \"time_field\": \"@timestamp\", \"index_pattern\": \"metricbeat-*\", \"default_timefield\": \"@timestamp\", \"series\": [{\"line_width\": 2, \"metrics\": [{\"field\": \"postgresql.database.rows.returned\", \"percentiles\": [{\"value\": 50, \"id\": \"b507cc90-b798-11e9-af2f-3be5a91b64a6\", \"shade\": 0.2, \"mode\": \"line\"}], \"type\": \"max\", \"id\": \"a6981ed2-b798-11e9-a598-8baa89257193\"}, {\"field\": \"a6981ed2-b798-11e9-a598-8baa89257193\", \"type\": \"derivative\", \"id\": \"ed6f33d0-b8ff-11e9-8645-31d6a6d28728\", \"unit\": \"1\"}, {\"field\": \"ed6f33d0-b8ff-11e9-8645-31d6a6d28728\", \"type\": \"positive_only\", \"id\": \"f58b9e50-b8ff-11e9-8645-31d6a6d28728\", \"unit\": \"\"}], \"color\": \"rgba(164,221,0,1)\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"Rows Returned\", \"filter\": {\"query\": \"\", \"language\": \"kuery\"}, \"separate_axis\": 0, \"split_mode\": \"everything\", \"chart_type\": \"line\", \"point_size\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"a6981ed1-b798-11e9-a598-8baa89257193\", \"fill\": 0}, {\"line_width\": 2, \"point_size\": 0, \"color\": \"rgba(0,156,224,1)\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"Rows Fetched\", \"metrics\": [{\"field\": \"postgresql.database.rows.fetched\", \"type\": \"max\", \"id\": \"a6981ed4-b798-11e9-a598-8baa89257193\"}, {\"field\": \"a6981ed4-b798-11e9-a598-8baa89257193\", \"type\": \"derivative\", \"id\": \"064737e0-b900-11e9-8645-31d6a6d28728\", \"unit\": \"1s\"}, {\"field\": \"064737e0-b900-11e9-8645-31d6a6d28728\", \"type\": \"positive_only\", \"id\": \"0fea1b50-b900-11e9-8645-31d6a6d28728\", \"unit\": \"\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"a6981ed3-b798-11e9-a598-8baa89257193\", \"fill\": 0}], \"axis_formatter\": \"number\", \"interval\": \"auto\", \"id\": \"a6981ed0-b798-11e9-a598-8baa89257193\", \"filter\": {\"query\": \"\", \"language\": \"kuery\"}, \"gauge_inner_width\": 10, \"show_legend\": 1, \"gauge_color_rules\": [{\"id\": \"ada89790-b798-11e9-af2f-3be5a91b64a6\"}], \"show_grid\": 1, \"gauge_style\": \"half\", \"axis_scale\": \"normal\", \"gauge_width\": 10, \"type\": \"timeseries\", \"axis_position\": \"left\"}, \"aggs\": [], \"title\": \"Rows Fetched/Returned [Metricbeat PostgreSQL] ECS\"}"
+            }, 
+            "id": "66d67200-b799-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "visualization": "7.3.0"
+            }, 
+            "references": [], 
+            "type": "visualization", 
+            "updated_at": "2019-08-09T11:40:15.889Z", 
+            "version": "WzExNTgsMV0="
+        }, 
+        {
+            "attributes": {
+                "description": "", 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "title": "Rows Inserted/Deleted/Updated [Metricbeat PostgreSQL] ECS", 
+                "uiStateJSON": "{}", 
+                "version": 1, 
+                "visState": "{\"type\": \"metrics\", \"params\": {\"default_index_pattern\": \"metricbeat-*\", \"index_pattern\": \"metricbeat-*\", \"default_timefield\": \"@timestamp\", \"series\": [{\"line_width\": 2, \"point_size\": 0, \"color\": \"#3185FC\", \"stacked\": \"none\", \"value_template\": \"{{value}}/s\", \"label\": \"inserted\", \"metrics\": [{\"field\": \"postgresql.database.rows.inserted\", \"type\": \"max\", \"id\": \"fc474802-b799-11e9-bfa6-bd2fe13c0445\"}, {\"field\": \"fc474802-b799-11e9-bfa6-bd2fe13c0445\", \"type\": \"derivative\", \"id\": \"fc474804-b799-11e9-bfa6-bd2fe13c0445\", \"unit\": \"1s\"}, {\"field\": \"fc474804-b799-11e9-bfa6-bd2fe13c0445\", \"type\": \"positive_only\", \"id\": \"fc474803-b799-11e9-bfa6-bd2fe13c0445\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"fc474801-b799-11e9-bfa6-bd2fe13c0445\", \"fill\": 0}, {\"line_width\": 2, \"point_size\": 0, \"color\": \"#DB1374\", \"stacked\": \"none\", \"value_template\": \"{{value}}/s\", \"label\": \"deleted\", \"metrics\": [{\"field\": \"postgresql.database.rows.deleted\", \"type\": \"max\", \"id\": \"fc474806-b799-11e9-bfa6-bd2fe13c0445\"}, {\"field\": \"fc474806-b799-11e9-bfa6-bd2fe13c0445\", \"type\": \"derivative\", \"id\": \"fc474808-b799-11e9-bfa6-bd2fe13c0445\", \"unit\": \"1s\"}, {\"field\": \"fc474808-b799-11e9-bfa6-bd2fe13c0445\", \"type\": \"positive_only\", \"id\": \"fc474807-b799-11e9-bfa6-bd2fe13c0445\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"fc474805-b799-11e9-bfa6-bd2fe13c0445\", \"fill\": 0}, {\"line_width\": 2, \"point_size\": 0, \"color\": \"#00B3A4\", \"stacked\": \"none\", \"value_template\": \"{{value}}/s\", \"label\": \"updated\", \"metrics\": [{\"field\": \"postgresql.database.rows.updated\", \"type\": \"max\", \"id\": \"fc476f11-b799-11e9-bfa6-bd2fe13c0445\"}, {\"field\": \"fc476f11-b799-11e9-bfa6-bd2fe13c0445\", \"type\": \"derivative\", \"id\": \"fc476f13-b799-11e9-bfa6-bd2fe13c0445\", \"unit\": \"1s\"}, {\"field\": \"fc476f13-b799-11e9-bfa6-bd2fe13c0445\", \"type\": \"positive_only\", \"id\": \"fc476f12-b799-11e9-bfa6-bd2fe13c0445\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"fc476f10-b799-11e9-bfa6-bd2fe13c0445\", \"fill\": 0}], \"axis_formatter\": \"number\", \"interval\": \"auto\", \"id\": \"fc474800-b799-11e9-bfa6-bd2fe13c0445\", \"filter\": {\"query\": \"\", \"language\": \"kuery\"}, \"time_field\": \"@timestamp\", \"show_legend\": 1, \"show_grid\": 1, \"axis_scale\": \"normal\", \"type\": \"timeseries\", \"axis_position\": \"left\"}, \"aggs\": [], \"title\": \"Rows Inserted/Deleted/Updated [Metricbeat PostgreSQL] ECS\"}"
+            }, 
+            "id": "20931ef0-b79a-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "visualization": "7.3.0"
+            }, 
+            "references": [], 
+            "type": "visualization", 
+            "updated_at": "2019-08-09T11:41:36.559Z", 
+            "version": "WzExOTYsMV0="
+        }, 
+        {
+            "attributes": {
+                "description": "", 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "title": "Conflict/Deadlock Rates [Metricbeat PostgreSQL] ECS", 
+                "uiStateJSON": "{}", 
+                "version": 1, 
+                "visState": "{\"type\": \"metrics\", \"params\": {\"default_index_pattern\": \"metricbeat-*\", \"index_pattern\": \"metricbeat-*\", \"default_timefield\": \"@timestamp\", \"series\": [{\"line_width\": 2, \"point_size\": 0, \"color\": \"rgba(12,121,125,1)\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"conflicts\", \"metrics\": [{\"field\": \"postgresql.database.conflicts\", \"type\": \"max\", \"id\": \"6c90db32-b79a-11e9-a8f0-d7983cd3d871\"}, {\"field\": \"6c90db32-b79a-11e9-a8f0-d7983cd3d871\", \"type\": \"derivative\", \"id\": \"6c90db34-b79a-11e9-a8f0-d7983cd3d871\", \"unit\": \"1s\"}, {\"field\": \"6c90db34-b79a-11e9-a8f0-d7983cd3d871\", \"type\": \"positive_only\", \"id\": \"6c90db33-b79a-11e9-a8f0-d7983cd3d871\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"6c90db31-b79a-11e9-a8f0-d7983cd3d871\", \"fill\": 0}, {\"line_width\": 2, \"point_size\": 0, \"color\": \"rgba(244,78,59,1)\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"deadlocks\", \"metrics\": [{\"field\": \"postgresql.database.deadlocks\", \"type\": \"max\", \"id\": \"6c90db36-b79a-11e9-a8f0-d7983cd3d871\"}, {\"field\": \"6c90db36-b79a-11e9-a8f0-d7983cd3d871\", \"type\": \"derivative\", \"id\": \"6c90db38-b79a-11e9-a8f0-d7983cd3d871\", \"unit\": \"1s\"}, {\"field\": \"6c90db38-b79a-11e9-a8f0-d7983cd3d871\", \"type\": \"positive_only\", \"id\": \"6c90db37-b79a-11e9-a8f0-d7983cd3d871\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"6c90db35-b79a-11e9-a8f0-d7983cd3d871\", \"fill\": 0}], \"axis_formatter\": \"number\", \"interval\": \"auto\", \"id\": \"6c90db30-b79a-11e9-a8f0-d7983cd3d871\", \"filter\": {\"query\": \"\", \"language\": \"kuery\"}, \"time_field\": \"@timestamp\", \"show_legend\": 1, \"show_grid\": 1, \"axis_scale\": \"normal\", \"type\": \"timeseries\", \"axis_position\": \"left\"}, \"aggs\": [], \"title\": \"Conflict/Deadlock Rates [Metricbeat PostgreSQL] ECS\"}"
+            }, 
+            "id": "960ecdf0-b79a-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "visualization": "7.3.0"
+            }, 
+            "references": [], 
+            "type": "visualization", 
+            "updated_at": "2019-08-09T11:42:02.764Z", 
+            "version": "WzEyMDQsMV0="
+        }, 
+        {
+            "attributes": {
+                "description": "", 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "title": "Database Filter [Metricbeat PostgreSQL] ECS", 
+                "uiStateJSON": "{}", 
+                "version": 1, 
+                "visState": "{\"type\": \"input_control_vis\", \"params\": {\"pinFilters\": false, \"useTimeFilter\": true, \"updateFiltersOnChange\": true, \"controls\": [{\"parent\": \"\", \"indexPatternRefName\": \"control_0_index_pattern\", \"label\": \"database\", \"fieldName\": \"postgresql.database.name\", \"id\": \"1549397251041\", \"type\": \"list\", \"options\": {\"type\": \"terms\", \"size\": 5, \"multiselect\": false, \"dynamicOptions\": true, \"order\": \"desc\"}}]}, \"aggs\": [], \"title\": \"Database Filter [Metricbeat PostgreSQL] ECS\"}"
+            }, 
+            "id": "98e6b0a0-b79b-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "visualization": "7.3.0"
+            }, 
+            "references": [
+                {
+                    "id": "metricbeat-*", 
+                    "name": "control_0_index_pattern", 
+                    "type": "index-pattern"
+                }
+            ], 
+            "type": "visualization", 
+            "updated_at": "2019-08-09T11:39:56.460Z", 
+            "version": "WzExNTEsMV0="
+        }, 
+        {
+            "attributes": {
+                "description": "", 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "title": "Query Calls Count [Metricbeat PostgreSQL] ECS", 
+                "uiStateJSON": "{}", 
+                "version": 1, 
+                "visState": "{\"type\": \"metrics\", \"params\": {\"bar_color_rules\": [{\"id\": \"6da7d6e0-b902-11e9-9f00-7b1f283b2282\"}], \"default_index_pattern\": \"metricbeat-*\", \"index_pattern\": \"metricbeat-*\", \"default_timefield\": \"@timestamp\", \"pivot_type\": \"string\", \"axis_formatter\": \"number\", \"interval\": \"auto\", \"id\": \"2bc5fea0-b902-11e9-8b8c-f99be54b4271\", \"filter\": {\"query\": \"\", \"language\": \"kuery\"}, \"time_field\": \"@timestamp\", \"show_legend\": 1, \"pivot_id\": \"postgresql.statement.query.text\", \"series\": [{\"line_width\": 2, \"terms_field\": \"postgresql.statement.query.text\", \"point_size\": 0, \"terms_size\": \"10\", \"color\": \"rgba(22,165,165,1)\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"Number of times the query has been run\", \"metrics\": [{\"field\": \"postgresql.statement.query.calls\", \"type\": \"max\", \"id\": \"2bc5fea2-b902-11e9-8b8c-f99be54b4271\"}], \"split_mode\": \"terms\", \"chart_type\": \"line\", \"terms_order_by\": \"2bc5fea2-b902-11e9-8b8c-f99be54b4271\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"2bc5fea1-b902-11e9-8b8c-f99be54b4271\", \"fill\": 0}], \"axis_scale\": \"normal\", \"type\": \"top_n\", \"axis_position\": \"left\", \"show_grid\": 1}, \"aggs\": [], \"title\": \"Query Calls Count [Metricbeat PostgreSQL] ECS\"}"
+            }, 
+            "id": "147875b0-b903-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "visualization": "7.3.0"
+            }, 
+            "references": [], 
+            "type": "visualization", 
+            "updated_at": "2019-08-09T11:40:59.993Z", 
+            "version": "WzExODAsMV0="
+        }, 
+        {
+            "attributes": {
+                "description": "", 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "title": "Local block cache stats [Metricbeat PostgreSQL] ECS", 
+                "uiStateJSON": "{}", 
+                "version": 1, 
+                "visState": "{\"type\": \"metrics\", \"params\": {\"default_index_pattern\": \"metricbeat-*\", \"index_pattern\": \"metricbeat-*\", \"default_timefield\": \"@timestamp\", \"series\": [{\"line_width\": 2, \"point_size\": 0, \"color\": \"#3185FC\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"cache hits\", \"metrics\": [{\"field\": \"postgresql.statement.query.memory.local.hit\", \"type\": \"max\", \"id\": \"8f49dbd2-b908-11e9-a256-6d0ec934f3f9\"}, {\"field\": \"8f49dbd2-b908-11e9-a256-6d0ec934f3f9\", \"type\": \"derivative\", \"id\": \"8f49dbd4-b908-11e9-a256-6d0ec934f3f9\", \"unit\": \"1s\"}, {\"field\": \"8f49dbd2-b908-11e9-a256-6d0ec934f3f9\", \"type\": \"positive_only\", \"id\": \"8f49dbd3-b908-11e9-a256-6d0ec934f3f9\", \"unit\": \"\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"8f49dbd1-b908-11e9-a256-6d0ec934f3f9\", \"fill\": 0}, {\"line_width\": 2, \"point_size\": 0, \"color\": \"#DB1374\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"cache read\", \"metrics\": [{\"field\": \"postgresql.statement.query.memory.local.read\", \"type\": \"max\", \"id\": \"8f49dbd6-b908-11e9-a256-6d0ec934f3f9\"}, {\"field\": \"8f49dbd6-b908-11e9-a256-6d0ec934f3f9\", \"type\": \"derivative\", \"id\": \"8f49dbd8-b908-11e9-a256-6d0ec934f3f9\", \"unit\": \"1s\"}, {\"field\": \"8f49dbd6-b908-11e9-a256-6d0ec934f3f9\", \"type\": \"positive_only\", \"id\": \"8f49dbd7-b908-11e9-a256-6d0ec934f3f9\", \"unit\": \"\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"8f49dbd5-b908-11e9-a256-6d0ec934f3f9\", \"fill\": 0}], \"axis_formatter\": \"number\", \"interval\": \"auto\", \"id\": \"8f49dbd0-b908-11e9-a256-6d0ec934f3f9\", \"filter\": {\"query\": \"\", \"language\": \"kuery\"}, \"time_field\": \"@timestamp\", \"show_legend\": 1, \"show_grid\": 1, \"axis_scale\": \"normal\", \"type\": \"timeseries\", \"axis_position\": \"left\"}, \"aggs\": [], \"title\": \"Local block cache stats [Metricbeat PostgreSQL] ECS\"}"
+            }, 
+            "id": "0cb65170-b909-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "visualization": "7.3.0"
+            }, 
+            "references": [], 
+            "type": "visualization", 
+            "updated_at": "2019-08-09T11:42:18.557Z", 
+            "version": "WzEyMTAsMV0="
+        }, 
+        {
+            "attributes": {
+                "description": "", 
+                "kibanaSavedObjectMeta": {
+                    "searchSourceJSON": "{\"filter\": [], \"query\": {\"query\": \"\", \"language\": \"kuery\"}}"
+                }, 
+                "title": "Shared block cache stats [Metricbeat PostgreSQL] ECS", 
+                "uiStateJSON": "{}", 
+                "version": 1, 
+                "visState": "{\"type\": \"metrics\", \"params\": {\"default_index_pattern\": \"metricbeat-*\", \"index_pattern\": \"metricbeat-*\", \"default_timefield\": \"@timestamp\", \"series\": [{\"line_width\": 2, \"point_size\": 0, \"color\": \"#3185FC\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"cache hits\", \"metrics\": [{\"field\": \"postgresql.statement.query.memory.shared.hit\", \"type\": \"max\", \"id\": \"8f49dbd2-b908-11e9-a256-6d0ec934f3f9\"}, {\"field\": \"8f49dbd2-b908-11e9-a256-6d0ec934f3f9\", \"type\": \"derivative\", \"id\": \"8f49dbd4-b908-11e9-a256-6d0ec934f3f9\", \"unit\": \"1s\"}, {\"field\": \"8f49dbd4-b908-11e9-a256-6d0ec934f3f9\", \"type\": \"positive_only\", \"id\": \"8f49dbd3-b908-11e9-a256-6d0ec934f3f9\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"8f49dbd1-b908-11e9-a256-6d0ec934f3f9\", \"fill\": 0}, {\"line_width\": 2, \"point_size\": 0, \"color\": \"#DB1374\", \"stacked\": \"none\", \"value_template\": \"{{value}}\", \"label\": \"cache read\", \"metrics\": [{\"field\": \"postgresql.statement.query.memory.shared.read\", \"type\": \"max\", \"id\": \"8f49dbd6-b908-11e9-a256-6d0ec934f3f9\"}, {\"field\": \"8f49dbd6-b908-11e9-a256-6d0ec934f3f9\", \"type\": \"derivative\", \"id\": \"8f49dbd8-b908-11e9-a256-6d0ec934f3f9\", \"unit\": \"1s\"}, {\"field\": \"8f49dbd8-b908-11e9-a256-6d0ec934f3f9\", \"type\": \"positive_only\", \"id\": \"8f49dbd7-b908-11e9-a256-6d0ec934f3f9\"}], \"split_mode\": \"everything\", \"chart_type\": \"line\", \"separate_axis\": 0, \"axis_position\": \"right\", \"formatter\": \"number\", \"id\": \"8f49dbd5-b908-11e9-a256-6d0ec934f3f9\", \"fill\": 0}], \"axis_formatter\": \"number\", \"interval\": \"auto\", \"id\": \"8f49dbd0-b908-11e9-a256-6d0ec934f3f9\", \"filter\": {\"query\": \"\", \"language\": \"kuery\"}, \"time_field\": \"@timestamp\", \"show_legend\": 1, \"show_grid\": 1, \"axis_scale\": \"normal\", \"type\": \"timeseries\", \"axis_position\": \"left\"}, \"aggs\": [], \"title\": \"Shared block cache stats [Metricbeat PostgreSQL] ECS\"}"
+            }, 
+            "id": "e2b28ce0-b908-11e9-a579-f5c0a5d81340", 
+            "migrationVersion": {
+                "visualization": "7.3.0"
+            }, 
+            "references": [], 
+            "type": "visualization", 
+            "updated_at": "2019-08-09T11:42:42.659Z", 
+            "version": "WzEyMTksMV0="
+        }
+    ], 
+    "version": "7.3.0"
+}
