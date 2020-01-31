@@ -128,6 +128,12 @@ metricbeat.modules:
   username: ${AWX_RABBITMQ_USER}
   password: ${AWX_RABBITMQ_PASS}
 
+- module: memcached
+  metricsets: ["stats"]
+  period: 10s
+  hosts: ["memcached:11211"]
+  enabled: true
+
 hostPid: true
 reload.enabled: true
 
@@ -151,7 +157,7 @@ processors:
 
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
-  hosts: '192.168.43.184:9200'
+  hosts: '${ELASTIC_HOST}'
   username: '${ELASTICSEARCH_USERNAME:elastic}'
   password: '${ELASTICSEARCH_PASSWORD:changeme}'
 
@@ -160,7 +166,7 @@ output.elasticsearch:
 # These settings control loading the sample dashboards to the Kibana index. Loading
 # the dashboards is disabled by default and can be enabled either by setting the
 # options here, or by using the `-setup` CLI flag.
-setup.kibana.host: '192.168.43.184:5601'
+setup.kibana.host: '${KIBANA_HOST}'
 setup.dashboards.enabled: true
 setup.dashboards.always_kibana: true #Only talk to Kibana, which is important for the retry
 setup.dashboards.retry.enabled: true #Retry in case Kibana is not up yet

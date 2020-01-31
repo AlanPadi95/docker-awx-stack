@@ -73,6 +73,8 @@ services:
 
   memcached:
     image: "memcached"
+    ports:
+      - "11211:11211"
     deploy:
       mode: replicated
       replicas: 1
@@ -103,8 +105,8 @@ services:
     image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION:-7.5.2}
     user: root
     environment:
-      - setup.kibana.host=${KIBANA_HOST:-kibana}:5601
-      - output.elasticsearch.hosts=${ELASTIC_HOST}:9200
+      - KIBANA_HOST='${KIBANA_HOST}:5601'
+      - ELASTIC_HOST='${ELASTIC_HOST}:9200'
       - ELASTICSEARCH_USERNAME=${ELASTICSEARCH_USERNAME-elastic}
       - ELASTICSEARCH_PASSWORD=${ELASTICSEARCH_PASSWORD-changeme}
       - AWX_DB_USER=${AWX_DB_USER:-awx}
