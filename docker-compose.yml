@@ -51,8 +51,6 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
-    depends_on:
-      - postgres
 
   rabbitmq:
     image: ansible/awx_rabbitmq
@@ -85,12 +83,14 @@ services:
 
   postgres:
     image: postgres
+    user: root
     ports:
       - "5432:5432"
     deploy:
       mode: replicated
       replicas: 1
     volumes:
+      - ./postgres/config/postgresql.conf:/var/lib/postgresql/data/pgdata/postgresql.conf:Z
       - ./postgres/data/:/var/lib/postgresql/data/pgdata:Z
     environment:
       POSTGRES_USER: awx

@@ -1,6 +1,6 @@
 .vscode/**
 .history/**
-postgres/**
+postgres/data/**
 projects/**
 inventories/**
 .DS_Store
