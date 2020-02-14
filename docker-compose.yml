@@ -90,8 +90,7 @@ services:
       mode: replicated
       replicas: 1
     volumes:
-      - ./postgres/config/postgresql.conf:/var/lib/postgresql/data/pgdata/postgresql.conf:Z
-      - ./postgres/data/:/var/lib/postgresql/data/pgdata:Z
+      - ./postgres/data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: awx
       POSTGRES_PASSWORD: changeme
