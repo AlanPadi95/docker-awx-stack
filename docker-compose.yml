@@ -55,8 +55,8 @@ services:
   rabbitmq:
     image: ansible/awx_rabbitmq
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "5672"
+      - "15672"
     deploy:
       mode: replicated
       replicas: 1
@@ -72,7 +72,7 @@ services:
   memcached:
     image: "memcached"
     ports:
-      - "11211:11211"
+      - "11211"
     deploy:
       mode: replicated
       replicas: 1
@@ -85,7 +85,7 @@ services:
     image: postgres
     user: root
     ports:
-      - "5432:5432"
+      - "5432"
     deploy:
       mode: replicated
       replicas: 1
