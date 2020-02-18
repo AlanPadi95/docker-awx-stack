@@ -1,9 +1,3 @@
-<!--
-Because we focus purely on integrating the Elastic stack using Docker and not on the individual stack components themselves, we kindly ask our users to submit questions about Elastic products in the Elastic Discussion Forums @ https://discuss.elastic.co/.
-
-General questions regarding this project can be asked in the docker-elk Gitter chat room @ https://gitter.im/deviantony/docker-elk.
--->
-
 ### Problem description
 
 <!-- Be as descriptive as possible regarding the encountered issue versus the expected outcome. -->
