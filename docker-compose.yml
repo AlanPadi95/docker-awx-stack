@@ -2,7 +2,7 @@ version: '3.7'
 services:
 
   web:
-    image: ansible/awx_web:9.1.0
+    image: ansible/awx_web
     depends_on:
       - rabbitmq
       - memcached
@@ -29,7 +29,7 @@ services:
       no_proxy: ''
 
   task:
-    image: ansible/awx_task:9.1.0
+    image: ansible/awx_task
     depends_on:
       - rabbitmq
       - memcached
