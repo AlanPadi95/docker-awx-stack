@@ -27,6 +27,8 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
+    networks:
+      - awx
 
   task:
     image: ansible/awx_task
@@ -51,6 +53,8 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
+    networks:
+      - awx
 
   rabbitmq:
     image: ansible/awx_rabbitmq
@@ -68,6 +72,8 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
+    networks:
+      - awx
 
   memcached:
     image: "memcached"
@@ -80,7 +86,9 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
-
+    networks:
+      - awx  
+  
   postgres:
     image: postgres
     user: root
@@ -99,6 +107,8 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
+    networks:
+      - awx
   
   metricbeat:
     image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION:-7.5.2}
@@ -125,7 +135,13 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+    networks:
+      - awx
 
 configs:
   metricbeat_config:
     file: ./metricbeat/config/metricbeat.yml
+
+networks:
+  awx:
+    driver: overlay
