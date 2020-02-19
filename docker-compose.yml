@@ -55,6 +55,9 @@ services:
       no_proxy: ''
     networks:
       - awx
+    command:
+      - "sudo pip2 install ptwinrm"
+      - "sudo pip3 install ptwinrm"
 
   rabbitmq:
     image: ansible/awx_rabbitmq
