@@ -29,6 +29,9 @@ services:
       no_proxy: ''
     networks:
       - awx
+    command:
+      - "sudo pip2 install ptwinrm pywinrm"
+      - "sudo pip3 install ptwinrm pywinrm"
 
   task:
     image: ansible/awx_task
