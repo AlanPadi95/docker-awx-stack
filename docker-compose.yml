@@ -27,11 +27,13 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
+      LOGSTASH_PORT: "5000"
+      LOGSTASH_SERVER: "localhost"
+      LOGSTASH_TYPE: "ansible"
     networks:
       - awx
     command:
-      - "sudo pip2 install ptwinrm pywinrm"
-      - "sudo pip3 install ptwinrm pywinrm"
+      - "sudo pip2 install logstash"
 
   task:
     image: ansible/awx_task
@@ -56,11 +58,13 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
+      LOGSTASH_PORT: "5000"
+      LOGSTASH_SERVER: "localhost"
+      LOGSTASH_TYPE: "ansible"
     networks:
       - awx
     command:
-      - "sudo pip2 install ptwinrm"
-      - "sudo pip3 install ptwinrm"
+      - "sudo pip2 install logstash"
 
   rabbitmq:
     image: ansible/awx_rabbitmq
