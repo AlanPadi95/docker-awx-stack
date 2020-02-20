@@ -2,7 +2,7 @@ version: '3.7'
 services:
 
   web:
-    image: ansible/awx_web
+    build: ./awx_web
     depends_on:
       - rabbitmq
       - memcached
@@ -32,11 +32,9 @@ services:
       LOGSTASH_TYPE: "ansible"
     networks:
       - awx
-    command:
-      - "sudo pip2 install python-logstash"
-      - "sudo pip3 install python-logstash"
+  
   task:
-    image: ansible/awx_task
+    build: ./awx_task
     depends_on:
       - rabbitmq
       - memcached
@@ -63,9 +61,7 @@ services:
       LOGSTASH_TYPE: "ansible"
     networks:
       - awx
-    command:
-      - "sudo pip2 install python-logstash"
-      - "sudo pip3 install python-logstash"
+  
 
   rabbitmq:
     image: ansible/awx_rabbitmq
