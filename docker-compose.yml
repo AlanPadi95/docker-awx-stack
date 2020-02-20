@@ -2,6 +2,7 @@ version: '3.7'
 services:
 
   web:
+    image: alanpadi95/awx_web
     build: ./awx_web
     depends_on:
       - rabbitmq
@@ -34,6 +35,7 @@ services:
       - awx
   
   task:
+    image: alanpadi95/awx_task
     build: ./awx_task
     depends_on:
       - rabbitmq
