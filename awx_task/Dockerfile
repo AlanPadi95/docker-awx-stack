@@ -1,8 +1,6 @@
 FROM ansible/awx_task
 
 USER root
-
-RUN sudo pip2 install logstash
-RUN sudo pip3 install logstash
-RUN sudo pip2 install python-logstash
-RUN sudo pip3 install python3-logstash
+RUN sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
+RUN sudo pip install logstash
+RUN sudo pip install python3-logstash
