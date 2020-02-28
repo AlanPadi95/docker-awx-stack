@@ -27,9 +27,6 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
-      LOGSTASH_PORT: "5000"
-      LOGSTASH_SERVER: "localhost"
-      LOGSTASH_TYPE: "ansible"
     networks:
       - awx
   
@@ -56,9 +53,6 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
-      LOGSTASH_PORT: "5000"
-      LOGSTASH_SERVER: "localhost"
-      LOGSTASH_TYPE: "ansible"
     networks:
       - awx
   
