@@ -1,6 +1,6 @@
 .vscode/**
 .history/**
-projects/**
+projects/*
 !projects/ping
 !projects/gather_facts
 inventories/**
