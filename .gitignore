@@ -1,6 +1,8 @@
 .vscode/**
 .history/**
 projects/**
+!projects/ping
+!projects/gather_facts
 inventories/**
 .DS_Store
 postgres/data/*
