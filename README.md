@@ -55,7 +55,7 @@ exclusively. Make sure the repository is cloned in one of those locations or fol
 Clone this repository, then start the stack using Docker Compose:
 
 ```console
-$ git clone https://github.com/AlanPadi95/docker-elastic-stack.git
+$ git clone https://github.com/AlanPadi95/docker-awx-stack.git
 ...
 $ docker-compose up
 ```
