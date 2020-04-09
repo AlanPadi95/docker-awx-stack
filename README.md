@@ -17,7 +17,7 @@ Based on the official Docker images from Ansible, Memcached and PostgreSQL:
 
 * [ansible/awx_web](https://hub.docker.com/r/ansible/awx_web)
 * [ansible/awx_task](https://hub.docker.com/r/ansible/awx_task)
-* [ansible/awx_rabbitmq](https://hub.docker.com/r/ansible/awx_rabbitmq)
+* [redis](https://hub.docker.com/_/redis/)
 * [memcached](https://hub.docker.com/_/memcached)
 * [postgres](https://hub.docker.com/_/postgres)
 
