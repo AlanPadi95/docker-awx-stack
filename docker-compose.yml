@@ -4,12 +4,11 @@ services:
   web:
     image: ansible/awx_web
     depends_on:
-      - rabbitmq
+      - redis
       - memcached
       - postgres
     ports:
       - "8052:8052"
-    hostname: awxweb
     user: root
     deploy:
       mode: replicated
@@ -19,6 +18,8 @@ services:
       - "./config/environment.sh:/etc/tower/conf.d/environment.sh"
       - "./config/credentials.py:/etc/tower/conf.d/credentials.py"
       - "./config/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./config/redis_socket:/var/run/redis/:rw"
+      - "./config/memcached_socket:/var/run/memcached/:rw"
       - "./projects:/var/lib/awx/projects:rw"
       - "./inventories:/var/lib/awx/inventories:rw"
       # - "/etc/pki/ca-trust/source/anchors:/etc/pki/ca-trust/source/anchors:ro' }}"
@@ -33,11 +34,10 @@ services:
   task:
     image: ansible/awx_task
     depends_on:
-      - rabbitmq
+      - redis
       - memcached
       - web
       - postgres
-    hostname: awx
     user: root
     deploy:
       mode: replicated
@@ -47,6 +47,8 @@ services:
       - "./config/environment.sh:/etc/tower/conf.d/environment.sh"
       - "./config/credentials.py:/etc/tower/conf.d/credentials.py"
       - "./projects:/var/lib/awx/projects:rw"
+      - "./config/redis_socket:/var/run/redis/:rw"
+      - "./config/memcached_socket:/var/run/memcached/:rw"
       # - "/etc/pki/ca-trust/source/anchors:/etc/pki/ca-trust/source/anchors:ro"
       # - "ssl_certificate:/etc/nginx/awxweb.pem:ro"
     environment:
@@ -56,30 +58,26 @@ services:
     networks:
       - awx
   
-
-  rabbitmq:
-    image: ansible/awx_rabbitmq
-    ports:
-      - "5672"
-      - "15672"
+  redis:
+    image: redis
     deploy:
       mode: replicated
       replicas: 1
     environment:
-      RABBITMQ_DEFAULT_VHOST: "awx"
-      RABBITMQ_DEFAULT_USER: "guest"
-      RABBITMQ_DEFAULT_PASS: "changeme"
-      RABBITMQ_ERLANG_COOKIE: "cookiemonster"
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
+    command: ["/usr/local/etc/redis/redis.conf"]
+    volumes:
+      - "./config/redis.conf:/usr/local/etc/redis/redis.conf:ro"
+      - "./config/redis_socket:/var/run/redis/:rw"
+      - "./config/memcached_socket:/var/run/memcached/:rw"
     networks:
       - awx
 
   memcached:
-    image: "memcached"
-    ports:
-      - "11211"
+    image: "memcached:alpine"
+    command: ["-s", "/var/run/memcached/memcached.sock", "-a", "0666"]
     deploy:
       mode: replicated
       replicas: 1
@@ -87,6 +85,8 @@ services:
       http_proxy: ''
       https_proxy: ''
       no_proxy: ''
+    volumes:
+      - ./config/memcached_socket:/var/run/memcached/:rw
     networks:
       - awx  
   
@@ -111,37 +111,37 @@ services:
     networks:
       - awx
   
-  metricbeat:
-    image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION:-7.5.2}
-    user: root
-    environment:
-      - KIBANA_HOST='${KIBANA_HOST}:5601'
-      - ELASTIC_HOST='${ELASTIC_HOST}:9200'
-      - ELASTICSEARCH_USERNAME=${ELASTICSEARCH_USERNAME-elastic}
-      - ELASTICSEARCH_PASSWORD=${ELASTICSEARCH_PASSWORD-changeme}
-      - AWX_DB_USER=${AWX_DB_USER:-awx}
-      - AWX_DB_PASS=${AWX_DB_PASS:-changeme}
-      - AWX_RABBITMQ_USER=${AWX_RABBITMQ_USER:-guest}
-      - AWX_RABBITMQ_PASS=${AWX_RABBITMQ_PASS:-changeme}
-    configs:
-      - source: metricbeat_config
-        target: /usr/share/metricbeat/metricbeat.yml
-    command: -system.hostfs=/hostfs
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
-      - /proc:/hostfs/proc:ro
-      - /:/hostfs:ro
-      - ./metricbeat/dashboards:/usr/share/metricbeat/kibana/7/dashboard:ro
-    deploy:
-      mode: replicated
-      replicas: 1
-    networks:
-      - awx
+#   metricbeat:
+#     image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION:-7.5.2}
+#     user: root
+#     environment:
+#       - KIBANA_HOST='${KIBANA_HOST}:5601'
+#       - ELASTIC_HOST='${ELASTIC_HOST}:9200'
+#       - ELASTICSEARCH_USERNAME=${ELASTICSEARCH_USERNAME-elastic}
+#       - ELASTICSEARCH_PASSWORD=${ELASTICSEARCH_PASSWORD-changeme}
+#       - AWX_DB_USER=${AWX_DB_USER:-awx}
+#       - AWX_DB_PASS=${AWX_DB_PASS:-changeme}
+#       - AWX_RABBITMQ_USER=${AWX_RABBITMQ_USER:-guest}
+#       - AWX_RABBITMQ_PASS=${AWX_RABBITMQ_PASS:-changeme}
+#     configs:
+#       - source: metricbeat_config
+#         target: /usr/share/metricbeat/metricbeat.yml
+#     command: -system.hostfs=/hostfs
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock:ro
+#       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+#       - /proc:/hostfs/proc:ro
+#       - /:/hostfs:ro
+#       - ./metricbeat/dashboards:/usr/share/metricbeat/kibana/7/dashboard:ro
+#     deploy:
+#       mode: replicated
+#       replicas: 1
+#     networks:
+#       - awx
 
-configs:
-  metricbeat_config:
-    file: ./metricbeat/config/metricbeat.yml
+# configs:
+#   metricbeat_config:
+#     file: ./metricbeat/config/metricbeat.yml
 
 networks:
   awx:
