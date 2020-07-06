@@ -5,8 +5,5 @@ projects/*
 !projects/gather_facts
 inventories/**
 .DS_Store
-postgres/data/*
-!postgres/data
-postgres/data/pgdata/*
-!postgres/data/pgdata
-!postgresql.conf
+postgres/*
+**.log

@@ -1,148 +1,111 @@
-version: '3.7'
+version: '2'
 services:
 
   web:
-    image: ansible/awx_web
+    image: ansible/awx:13.0.0
+    container_name: awx_web
     depends_on:
-      - rabbitmq
-      - memcached
+      - redis
       - postgres
     ports:
-      - "8052:8052"
+      - "80:8052"
     hostname: awxweb
     user: root
-    deploy:
-      mode: replicated
-      replicas: 1
+    restart: unless-stopped
     volumes:
-      - "./config/SECRET_KEY.txt:/etc/tower/SECRET_KEY"
-      - "./config/environment.sh:/etc/tower/conf.d/environment.sh"
-      - "./config/credentials.py:/etc/tower/conf.d/credentials.py"
-      - "./config/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - supervisor-socket:/var/run/supervisor
+      - rsyslog-socket:/var/run/awx-rsyslog/
+      - rsyslog-config:/var/lib/awx/rsyslog/
+      - "./conf/SECRET_KEY.txt:/etc/tower/SECRET_KEY"
+      - "./conf/environment.sh:/etc/tower/conf.d/environment.sh"
+      - "./conf/credentials.py:/etc/tower/conf.d/credentials.py"
+      - "./conf/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "~/.awx/redis_socket:/var/run/redis/:rw"
       - "./projects:/var/lib/awx/projects:rw"
       - "./inventories:/var/lib/awx/inventories:rw"
-      # - "/etc/pki/ca-trust/source/anchors:/etc/pki/ca-trust/source/anchors:ro' }}"
-      # - "ssl_certificate:/etc/nginx/awxweb.pem:ro"
     environment:
-      http_proxy: ''
-      https_proxy: ''
-      no_proxy: ''
-    networks:
-      - awx
-  
+      http_proxy: 
+      https_proxy: 
+      no_proxy: 
+
   task:
-    image: ansible/awx_task
+    image: ansible/awx:13.0.0
+    container_name: awx_task
     depends_on:
-      - rabbitmq
-      - memcached
+      - redis
       - web
       - postgres
+    command: /usr/bin/launch_awx_task.sh
     hostname: awx
     user: root
-    deploy:
-      mode: replicated
-      replicas: 1
+    restart: unless-stopped
     volumes:
-      - "./config/SECRET_KEY.txt:/etc/tower/SECRET_KEY"
-      - "./config/environment.sh:/etc/tower/conf.d/environment.sh"
-      - "./config/credentials.py:/etc/tower/conf.d/credentials.py"
+      - supervisor-socket:/var/run/supervisor
+      - rsyslog-socket:/var/run/awx-rsyslog/
+      - rsyslog-config:/var/lib/awx/rsyslog/
+      - "./conf/SECRET_KEY.txt:/etc/tower/SECRET_KEY"
+      - "./conf/environment.sh:/etc/tower/conf.d/environment.sh"
+      - "./conf/credentials.py:/etc/tower/conf.d/credentials.py"
+      - "~/.awx/redis_socket:/var/run/redis/:rw"
       - "./projects:/var/lib/awx/projects:rw"
-      # - "/etc/pki/ca-trust/source/anchors:/etc/pki/ca-trust/source/anchors:ro"
-      # - "ssl_certificate:/etc/nginx/awxweb.pem:ro"
+      - "./inventories:/var/lib/awx/inventories:rw"
     environment:
-      http_proxy: ''
-      https_proxy: ''
-      no_proxy: ''
-    networks:
-      - awx
-  
+      http_proxy: 
+      https_proxy: 
+      no_proxy: 
+      SUPERVISOR_WEB_CONFIG_PATH: '/etc/supervisord.conf'
 
-  rabbitmq:
-    image: ansible/awx_rabbitmq
-    ports:
-      - "5672"
-      - "15672"
-    deploy:
-      mode: replicated
-      replicas: 1
+  redis:
+    image: redis
+    container_name: awx_redis
+    restart: unless-stopped
     environment:
-      RABBITMQ_DEFAULT_VHOST: "awx"
-      RABBITMQ_DEFAULT_USER: "guest"
-      RABBITMQ_DEFAULT_PASS: "changeme"
-      RABBITMQ_ERLANG_COOKIE: "cookiemonster"
-      http_proxy: ''
-      https_proxy: ''
-      no_proxy: ''
-    networks:
-      - awx
-
-  memcached:
-    image: "memcached"
-    ports:
-      - "11211"
-    deploy:
-      mode: replicated
-      replicas: 1
-    environment:
-      http_proxy: ''
-      https_proxy: ''
-      no_proxy: ''
-    networks:
-      - awx  
-  
-  postgres:
-    image: postgres
-    user: root
-    ports:
-      - "5432"
-    deploy:
-      mode: replicated
-      replicas: 1
+      http_proxy: 
+      https_proxy: 
+      no_proxy: 
+    command: ["/usr/local/etc/redis/redis.conf"]
     volumes:
-      - ./postgres/data:/var/lib/postgresql/data:Z
+      - "./conf/redis.conf:/usr/local/etc/redis/redis.conf:ro"
+      - "~/.awx/redis_socket:/var/run/redis/:rw"
+
+  postgres:
+    image: postgres:10
+    container_name: awx_postgres
+    restart: unless-stopped
+    command: postgres -c listen_addresses='*'
+    volumes:
+      - ~/.awx/pgdocker/10/data/:/var/lib/postgresql/data/pgdata:Z
     environment:
       POSTGRES_USER: awx
-      POSTGRES_PASSWORD: changeme
+      POSTGRES_PASSWORD: awxpass
       POSTGRES_DB: awx
       PGDATA: /var/lib/postgresql/data/pgdata
-      http_proxy: ''
-      https_proxy: ''
-      no_proxy: ''
-    networks:
-      - awx
-  
+      http_proxy: 
+      https_proxy: 
+      no_proxy: 
+
   metricbeat:
-    image: docker.elastic.co/beats/metricbeat:${ELASTIC_VERSION:-7.5.2}
+    image: docker.elastic.co/beats/metricbeat:7.5.2
     user: root
+    restart: unless-stopped
     environment:
-      - KIBANA_HOST='${KIBANA_HOST}:5601'
-      - ELASTIC_HOST='${ELASTIC_HOST}:9200'
-      - ELASTICSEARCH_USERNAME=${ELASTICSEARCH_USERNAME-elastic}
-      - ELASTICSEARCH_PASSWORD=${ELASTICSEARCH_PASSWORD-changeme}
-      - AWX_DB_USER=${AWX_DB_USER:-awx}
-      - AWX_DB_PASS=${AWX_DB_PASS:-changeme}
-      - AWX_RABBITMQ_USER=${AWX_RABBITMQ_USER:-guest}
-      - AWX_RABBITMQ_PASS=${AWX_RABBITMQ_PASS:-changeme}
-    configs:
-      - source: metricbeat_config
-        target: /usr/share/metricbeat/metricbeat.yml
+      - KIBANA_HOST='kibana:5601'
+      - ELASTIC_HOST='elasticsearch:9200'
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=changeme
+      - AWX_DB_USER=awx
+      - AWX_DB_PASS=awxpass
     command: -system.hostfs=/hostfs
     volumes:
+      - ./metricbeat/config/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
       - /proc:/hostfs/proc:ro
       - /:/hostfs:ro
       - ./metricbeat/dashboards:/usr/share/metricbeat/kibana/7/dashboard:ro
-    deploy:
-      mode: replicated
-      replicas: 1
-    networks:
-      - awx
 
-configs:
-  metricbeat_config:
-    file: ./metricbeat/config/metricbeat.yml
 
-networks:
-  awx:
-    driver: overlay
+volumes:
+  supervisor-socket:
+  rsyslog-socket:
+  rsyslog-config:
