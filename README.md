@@ -15,10 +15,8 @@ AWX provides a web-based user interface, [REST API](https://docs.ansible.com/ans
 
 Based on the official Docker images from Ansible, Memcached and PostgreSQL:
 
-* [ansible/awx_web](https://hub.docker.com/r/ansible/awx_web)
-* [ansible/awx_task](https://hub.docker.com/r/ansible/awx_task)
+* [ansible/awx](https://hub.docker.com/r/ansible/awx)
 * [redis](https://hub.docker.com/_/redis/)
-* [memcached](https://hub.docker.com/_/memcached)
 * [postgres](https://hub.docker.com/_/postgres)
 
 Addtitional images:
@@ -33,8 +31,7 @@ Addtitional images:
 
 By default, the stack exposes the following ports:
 
-* 8052: AWX web page
-* 8053: AWX Rest API
+* 80: AWX web page
 
 ### Docker for Desktop
 
@@ -98,7 +95,7 @@ $ docker stack services awx
 The stack is pre-configured with the following **privileged** user:
 
 * user: *admin*
-* password: *changeme*
+* password: *password*
 
 For more information about AWX configurations, please take a little look to the official [administration guide][tower-admin-guide], the [user guide][tower-user-guide] and the [official GitHub Repository][awx-github].
 
