@@ -4,10 +4,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': "awx",
         'USER': "awx",
-        'PASSWORD': "changeme",
+        'PASSWORD': "awxpass",
         'HOST': "postgres",
         'PORT': "5432",
     }
 }
 
-BROADCAST_WEBSOCKET_SECRET = "a1lDS044N0plVy1hbzV2OHZzWmg="
+BROADCAST_WEBSOCKET_SECRET = "WlNNc0h5UzdzcDdRWjhWS0owNzg="

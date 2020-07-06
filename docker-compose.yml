@@ -8,24 +8,25 @@ services:
       - redis
       - postgres
     ports:
-      - "8052:8052"
+      - "80:8052"
     hostname: awxweb
     user: root
     restart: unless-stopped
     volumes:
-      - "supervisor-socket:/var/run/supervisor"
-      - "rsyslog-socket:/var/run/awx-rsyslog/"
-      - "rsyslog-config:/var/lib/awx/rsyslog/"
-      - "./config/SECRET_KEY:/etc/tower/SECRET_KEY"
-      - "./config/environment.sh:/etc/tower/conf.d/environment.sh"
-      - "./config/credentials.py:/etc/tower/conf.d/credentials.py"
-      - "./config/nginx.conf:/etc/nginx/nginx.conf:ro"
-      - "/tmp/redis_socket:/var/run/redis/:rw"
+      - supervisor-socket:/var/run/supervisor
+      - rsyslog-socket:/var/run/awx-rsyslog/
+      - rsyslog-config:/var/lib/awx/rsyslog/
+      - "./conf/SECRET_KEY.txt:/etc/tower/SECRET_KEY"
+      - "./conf/environment.sh:/etc/tower/conf.d/environment.sh"
+      - "./conf/credentials.py:/etc/tower/conf.d/credentials.py"
+      - "./conf/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "~/.awx/redis_socket:/var/run/redis/:rw"
       - "./projects:/var/lib/awx/projects:rw"
+      - "./inventories:/var/lib/awx/inventories:rw"
     environment:
-      http_proxy: ''
-      https_proxy: ''
-      no_proxy: ''
+      http_proxy: 
+      https_proxy: 
+      no_proxy: 
 
   task:
     image: ansible/awx:13.0.0
@@ -42,16 +43,16 @@ services:
       - supervisor-socket:/var/run/supervisor
       - rsyslog-socket:/var/run/awx-rsyslog/
       - rsyslog-config:/var/lib/awx/rsyslog/
-      - "./config/SECRET_KEY:/etc/tower/SECRET_KEY"
-      - "./config/environment.sh:/etc/tower/conf.d/environment.sh"
-      - "./config/credentials.py:/etc/tower/conf.d/credentials.py"
-      - "/tmp/redis_socket:/var/run/redis/:rw"
+      - "./conf/SECRET_KEY.txt:/etc/tower/SECRET_KEY"
+      - "./conf/environment.sh:/etc/tower/conf.d/environment.sh"
+      - "./conf/credentials.py:/etc/tower/conf.d/credentials.py"
+      - "~/.awx/redis_socket:/var/run/redis/:rw"
       - "./projects:/var/lib/awx/projects:rw"
       - "./inventories:/var/lib/awx/inventories:rw"
     environment:
-      http_proxy: ''
-      https_proxy: ''
-      no_proxy: ''
+      http_proxy: 
+      https_proxy: 
+      no_proxy: 
       SUPERVISOR_WEB_CONFIG_PATH: '/etc/supervisord.conf'
 
   redis:
@@ -59,49 +60,49 @@ services:
     container_name: awx_redis
     restart: unless-stopped
     environment:
-      http_proxy: ''
-      https_proxy: ''
-      no_proxy: ''
+      http_proxy: 
+      https_proxy: 
+      no_proxy: 
     command: ["/usr/local/etc/redis/redis.conf"]
     volumes:
-      - "./config/redis.conf:/usr/local/etc/redis/redis.conf:ro"
-      - "/tmp/redis_socket:/var/run/redis/:rw"
-
+      - "./conf/redis.conf:/usr/local/etc/redis/redis.conf:ro"
+      - "~/.awx/redis_socket:/var/run/redis/:rw"
 
   postgres:
     image: postgres:10
     container_name: awx_postgres
     restart: unless-stopped
+    command: postgres -c listen_addresses='*'
     volumes:
-      - ./postgres/10/data/:/var/lib/postgresql/data/pgdata:Z
+      - ~/.awx/pgdocker/10/data/:/var/lib/postgresql/data/pgdata:Z
     environment:
       POSTGRES_USER: awx
-      POSTGRES_PASSWORD: changeme
+      POSTGRES_PASSWORD: awxpass
       POSTGRES_DB: awx
       PGDATA: /var/lib/postgresql/data/pgdata
-      http_proxy: ''
-      https_proxy: ''
-      no_proxy: ''
+      http_proxy: 
+      https_proxy: 
+      no_proxy: 
 
-  # metricbeat:
-  #   image: docker.elastic.co/beats/metricbeat:7.5.2
-  #   user: root
-  #   environment:
-  #     - KIBANA_HOST='kibana:5601'
-  #     - ELASTIC_HOST='elasticsearch:9200'
-  #     - ELASTICSEARCH_USERNAME=elastic
-  #     - ELASTICSEARCH_PASSWORD=changeme
-  #     - AWX_DB_USER=awx
-  #     - AWX_DB_PASS=changeme
-  #   command: -system.hostfs=/hostfs
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
-  #     - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
-  #     - /proc:/hostfs/proc:ro
-  #     - /:/hostfs:ro
-  #     - ./metricbeat/dashboards:/usr/share/metricbeat/kibana/7/dashboard:ro
-  #     - ./metricbeat/config/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
-  #   restart: unless-stopped
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:7.5.2
+    user: root
+    restart: unless-stopped
+    environment:
+      - KIBANA_HOST='kibana:5601'
+      - ELASTIC_HOST='elasticsearch:9200'
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=changeme
+      - AWX_DB_USER=awx
+      - AWX_DB_PASS=awxpass
+    command: -system.hostfs=/hostfs
+    volumes:
+      - ./metricbeat/config/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /proc:/hostfs/proc:ro
+      - /:/hostfs:ro
+      - ./metricbeat/dashboards:/usr/share/metricbeat/kibana/7/dashboard:ro
 
 
 volumes:

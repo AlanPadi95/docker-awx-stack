@@ -6,3 +6,4 @@ projects/*
 inventories/**
 .DS_Store
 postgres/*
+**.log
