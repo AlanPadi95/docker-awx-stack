@@ -13,7 +13,7 @@ AWX provides a web-based user interface, [REST API](https://docs.ansible.com/ans
 >
 > Check out to the [Docker Elastic stack](https://github.com/AlanPadi95/docker-elastic-stack) development.
 
-Based on the official Docker images from Ansible, Reddis and PostgreSQL:
+Based on the official Docker images from Ansible, Redis and PostgreSQL:
 
 * [ansible/awx](https://hub.docker.com/r/ansible/awx)
 * [redis](https://hub.docker.com/_/redis/)
