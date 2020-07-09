@@ -115,25 +115,6 @@ metricbeat.modules:
   # Password to use when connecting to PostgreSQL. Empty by default.
   password: ${AWX_DB_PASS}
 
-- module: rabbitmq
-  metricsets: ["node", "queue", "connection", "exchange"]
-  enabled: true
-  period: 10s
-  hosts: ["rabbitmq:5672","rabbitmq:15672"]
-
-  # Management path prefix, if `management.path_prefix` is set in RabbitMQ
-  # configuration, it has to be set to the same value.
-  #management_path_prefix: ""
-
-  username: ${AWX_RABBITMQ_USER}
-  password: ${AWX_RABBITMQ_PASS}
-
-- module: memcached
-  metricsets: ["stats"]
-  period: 10s
-  hosts: ["memcached:11211"]
-  enabled: true
-
 hostPid: true
 reload.enabled: true
 
